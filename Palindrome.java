@@ -6,18 +6,21 @@ public class Palindrome {
 	public static void main(String args[]){
 
 		//displayFibinoci(10);
-		//desplayPalindrome(10000);
+		//desplayPalindrome(100);
 		//reverseString("Vimal");
 		//reverseStringNew("Vimal");
 		//System.out.println(recRevString("Vimal"));
-		reverseWordsOfString();
+		//reverseWordsOfString();
+		//System.out.println(recRevString("HELLOW"));
+		System.out.println(rAdjDupRemoval("AAABBCDD"));
+		
 		
 	}
 	
 	
 	public static boolean isPalindrome(int num){
 		
-		int gNum = num;
+		/*int gNum = num;
 		int revNum =0;
 			
 		for (; gNum>0; gNum=gNum/10){
@@ -28,13 +31,21 @@ public class Palindrome {
 		if (num == revNum)
 			return true;
 		else
-			return false;
+			return false;*/
+		
+		int rev=0, gNum;
+		gNum=num;
+		
+		for(;gNum>0;gNum=gNum/10){
+			rev = rev*10+gNum%10;
+		}
+		return (num==rev);
 		
 		
 		}
 	
 	public static void desplayPalindrome(int n){
-		for (int i=1000;i<n;++i)
+		for (int i=0;i<n;++i)
 			if(isPalindrome(i))
 				System.out.println(i +" is Palindrom ");
 	}
@@ -87,11 +98,13 @@ public static void reverseStringNew(String str){
 		
 	}
 
-public static String recRevString(String str){
+public static String recRevString(String str){ //HEL
 	if (str==null || str.length() <=1)
 		return str;
 
-	return (recRevString(str.substring(1)) + str.charAt(0));
+	//return (recRevString(str.substring(1)) + str.charAt(0)); 1. EL + H->E+ L -> 
+	return (recRevString(str.substring(1))
+								+ str.substring(0));
 	
 }
 
@@ -107,6 +120,19 @@ public static void reverseWordsOfString(){
 		
 	}
 	System.out.println(revString);
+	
+}
+//remove adjust character using recursion
+public static String rAdjDupRemoval(String str){ //AABBC
+	if (str==null || str.length()<=1)
+		return str;
+	if(str.substring(0, 1).equals(str.substring(1,2))){
+		return (rAdjDupRemoval(str.substring(1)));
+	}
+	else{
+		return(str.substring(0,1)+rAdjDupRemoval(str.substring(1)));
+	}
+		
 	
 }
 	

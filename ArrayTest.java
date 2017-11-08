@@ -1,7 +1,9 @@
 package com.vimal.Test;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Map;
 import java.util.Set;
 
 public class ArrayTest {
@@ -14,8 +16,9 @@ public class ArrayTest {
 		String test="This is My test String";
 		//System.out.println(replaceString(test.trim()," ","9999"));
 		
-		System.out.println(replaceStringUsingCharArray(test.toCharArray(),test.length()));
-		
+		//System.out.println(replaceStringUsingCharArray(test.toCharArray(),test.length()));
+		//chkUniqueString();
+		fib(2);
 	}
 	
 	
@@ -50,18 +53,42 @@ public class ArrayTest {
 	}
 	
 	public static void chkUniqueString(){
-		String myString = "testing";
+		String myString = "AABBCCDDEE";
 		
-		boolean [] checkBool = new boolean[128];
-		Hashtable<Integer, Integer> ht= new Hashtable<>();
+		//int [] checkBool = new int[128];
+		
+		//int[] checkSum = new int[128]
+		/*Hashtable<Integer, Integer> ht= new Hashtable<>();
 		ht.get(0);
 		for (int a:ht.keySet() ){
 			
+		}*/
+		
+		Map<Character, Integer> dMap = new HashMap<>();
+		
+		for(int i=0;i<myString.length();++i){
+		
+
+
+			if (dMap.get(myString.charAt(i))!=null){ // 
+				dMap.put(myString.charAt(i), dMap.get(myString.charAt(i))+1);
+			}
+			else{
+				dMap.put(myString.charAt(i), 1);
+			}
 		}
-		
-		
-		
+		System.out.println("Given String "+myString);
+		for(int i=0;i<myString.length();++i){		
+			if (dMap.get(myString.charAt(i))==1){
+				System.out.println("Non repatative  -> "+myString.charAt(i));
+				break;
+			}
+		}
+			
+		return;		
 	}
+			
+	
 	public static String replaceString(String orginalString,String replacedString,  
 																	String replacementString){
 		
@@ -110,7 +137,27 @@ public class ArrayTest {
 		
 		return str;
 	}
-	
-	
+	//1 1 2 3 5 8 13
+	public static void fib(int n){
+		
+		if (n < 1){
+			System.out.println("NO");
+			return;
+		}
+		if (n == 1){
+			System.out.println("1");
+			return;
+		}
+		
+		int feb[] = new int[n];
+		feb[0]=1;
+		feb[1]=1;
+		for (int i=2;i<n;++i){
+			feb[i]=feb[i-1]+feb[i-2];
+		}
+		for (int i=0;i<n;++i){
+			System.out.println(feb[i]);
+		}
+	}
 
 }
